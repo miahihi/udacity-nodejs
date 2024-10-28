@@ -1,0 +1,26 @@
+header{
+    background: white;
+    padding: 0;
+   
+}
+
+a:hover{
+    color: white;
+}
+
+.container{
+    background-color: deepskyblue;
+    text-align: center;
+  
+    
+}
+
+a.logo{
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+}
+a.sub-logo {
+    color: white;
+    font-size: 15px;
+}

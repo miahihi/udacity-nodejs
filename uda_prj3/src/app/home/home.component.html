@@ -1,0 +1,28 @@
+<app-not-found [visible]="!products || products.length <= 0" resetLinkText="Reset Search"></app-not-found>
+<ul style="padding-top: 40px;">
+    <li *ngFor="let product of products">
+        <a>
+            <img class="image" src="{{product.imageUrl}}" alt="" routerLink="/product/{{product.id}}">
+            <div class="content">
+                <div class="name">
+                    {{product.name}}
+                </div>
+            </div>
+            <div class="content">
+                <span>
+                    {{product.price|currency}}
+                </span>
+            </div>
+            <div class="content">
+                <select style=" width: 100px;height: 30px;" [(ngModel)]="selectedValue" (ngModelChange)="onSelectChange($event)">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="content">
+                <button class="btn" (click)="addToCart(product.id)">Add to Cart</button>
+            </div>
+        </a>
+    </li>
+</ul>

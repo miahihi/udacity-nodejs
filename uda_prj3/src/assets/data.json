@@ -1,0 +1,68 @@
+[
+    {
+      "id": 1,
+      "name": "Mỹ Phẩm",
+      "description": "10-20",
+      "price": 10,
+      "favorite": false,
+      "origins": ["italy"],
+      "stars": 4.5,
+      "imageUrl": "/assets/images/products/product-1.jpg",
+      "tags": ["mypham"]
+    },
+    {
+      "id": 2,
+      "name": "Đồ trang điểm",
+      "price": 20,
+      "description": "20-30",
+      "favorite": true,
+      "origins": ["persia", "middle east", "china"],
+      "stars": 4.7,
+      "imageUrl": "/assets/images/products/product-2.jpg",
+      "tags": ["mypham"]
+    },
+    {
+      "id": 3,
+      "name": "Máy ảnh",
+      "price": 5,
+      "description": "10-15",
+      "favorite": false,
+      "origins": ["germany", "us"],
+      "stars": 3.5,
+      "imageUrl": "/assets/images/products/product-3.jpg",
+      "tags": ["maayanh"]
+    },
+    {
+      "id": 4,
+      "name": "Fried Potatoes",
+      "price": 2,
+      "description": "15-20",
+      "favorite": true,
+      "origins": ["belgium", "france"],
+      "stars": 3.3,
+      "imageUrl": "/assets/images/products/product-4.jpg",
+      "tags": ["bimbim"]
+    },
+    {
+      "id": 5,
+      "name": "Ba lô nhiều túi",
+      "price": 11,
+      "description": "40-50",
+      "favorite": false,
+      "origins": ["india", "asia"],
+      "stars": 3.0,
+      "imageUrl": "/assets/images/products/product-5.jpg",
+        "tags": ["balo"]
+    },
+    {
+      "id": 6,
+      "name": "Vegetables Pizza",
+      "price": 9,
+      "description": "40-50",
+      "favorite": false,
+      "origins": ["italy"],
+      "stars": 4.0,
+      "imageUrl": "/assets/images/products/product-6.jpg",
+      "tags": ["pizza"]
+    }
+  ]

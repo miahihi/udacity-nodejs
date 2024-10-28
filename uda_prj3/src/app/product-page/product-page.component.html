@@ -1,0 +1,37 @@
+
+<app-not-found [visible]="!product" notFoundMessage="Product Not Found!"
+resetLinkText="Back To Homepage"></app-not-found>
+<div *ngIf="product" class="container">
+    <img [src]="product.imageUrl" [alt]="product.name" />
+
+    <div class="details">
+        <div class="header">
+            <span class="name">
+                {{product.name}}
+            </span>
+        </div>
+
+        <div class="price">
+            <span>{{product.price|currency}}</span>
+        </div>
+
+        <div class="cook-time">
+            <span>
+            <strong>{{product.description}}</strong>
+            </span>
+        </div>
+        <div style="padding-bottom: 10px;padding-top: 20px;">
+            <select style ="width: 100px;
+    height: 30px;"[(ngModel)]="selectedValue" (ngModelChange)="onSelectChange($event)">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <button (click)="addToCart()">Add To Cart</button>
+        <div routerLink="/" class="back">
+            &lt;--Back to product list
+        </div>
+    </div>
+
+</div>
