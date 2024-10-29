@@ -1,75 +1,129 @@
+# version: 2.1
+# orbs:
+#   # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
+#   node: circleci/node@5.0.2
+#   eb: circleci/aws-elastic-beanstalk@2.0.1
+#   aws-cli: circleci/aws-cli@3.1.1
+#   # different jobs are calles later in the workflows sections
+# jobs:
+#   build:
+#     docker:
+#       # the base image can run most needed actions with orbs
+#       - image: "cimg/node:15.14"
+#     steps:
+#       # install node and checkout code
+#       - node/install:
+#           node-version: '15.14'         
+#       - checkout
+#       # Use root level package.json to install dependencies in the frontend app
+#       - run:
+#           name: Install Front-End Dependencies
+#           command:  cd uda_prj3 
+#                     npm i -f
+#       # TODO: Install dependencies in the the backend API          
+#       - run:
+#           name: Install API Dependencies
+#           command: npm i
+#       # TODO: Build the frontend app
+#       - run:
+#           name: Front-End Build
+#           command: npm run build
+#       # TODO: Build the backend API      
+#       - run:
+#           name: API Build
+#           command: npm run build
+#   # deploy step will run only after manual approval
+#   deploy:
+#     docker:
+#       - image: "cimg/base:stable"
+#       # more setup needed for aws, node, elastic beanstalk
+#     steps:
+#       - node/install:
+#           node-version: '15.14' 
+#       - eb/setup
+#       - aws-cli/setup
+#       - checkout
+#       - run:
+#           name: Deploy App
+#           # TODO: Install, build, deploy in both apps
+#           command: |
+#             echo "# TODO: Install, build, deploy in both apps"
+            
+# workflows:
+#   udagram:
+#     jobs:
+#       - build
+#       - hold:
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#           type: approval
+#           requires:
+#             - build
+#       - deploy:
+#           requires:
+#             - hold
 version: 2.1
 orbs:
-  # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
   node: circleci/node@5.0.2
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
-  # different jobs are calles later in the workflows sections
+
 jobs:
   build:
     docker:
-      # the base image can run most needed actions with orbs
-      - image: "cimg/node:14.15"
+      - image: "cimg/node:15.14"  # Sử dụng Node.js phiên bản 15.14
     steps:
-      # install node and checkout code
       - node/install:
-          node-version: '14.15'         
-      - checkout
-      # Use root level package.json to install dependencies in the frontend app
+          node-version: '15.14'
+      - checkout  # Lấy mã nguồn
       - run:
           name: Install Front-End Dependencies
           command: |
-            echo "NODE --version" 
-            echo $(node --version)
-            echo "NPM --version" 
-            echo $(npm --version)
-            npm run frontend:install
-      # TODO: Install dependencies in the the backend API          
+            cd uda_prj3
+            npm install
       - run:
-          name: Install API Dependencies
+          name: Install Back-End Dependencies
           command: |
-           echo "TODO: Install dependencies in the the backend API  "
-      # TODO: Lint the frontend
+            cd ../Project2
+            npm install
       - run:
-          name: Front-End Lint
+          name: Build Front-End
           command: |
-            echo "TODO: Lint the frontend"
-      # TODO: Build the frontend app
+            cd ../uda_prj3
+            npm run build  # Build frontend
       - run:
-          name: Front-End Build
+          name: Build Back-End
           command: |
-            echo "TODO: Build the frontend app"
-      # TODO: Build the backend API      
-      - run:
-          name: API Build
-          command: |
-            echo "TODO: Build the backend API"
-  # deploy step will run only after manual approval
+            cd ../Project2
+            npm run build  # Build backend
+
   deploy:
     docker:
       - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15' 
+          node-version: '15.14'
       - eb/setup
       - aws-cli/setup
       - checkout
       - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
+          name: Deploy Application
           command: |
-            echo "# TODO: Install, build, deploy in both apps"
-            
+            cd uda_prj3
+            npm install
+            npm run build
+            cd ../Project2
+            npm install
+            npm run build
+            eb deploy  # Triển khai ứng dụng lên Elastic Beanstalk
+
 workflows:
-  udagram:
+  build_and_deploy:
     jobs:
       - build
       - hold:
-          filters:
-            branches:
-              only:
-                - master
           type: approval
           requires:
             - build
