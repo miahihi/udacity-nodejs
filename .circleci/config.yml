@@ -84,19 +84,18 @@ jobs:
             cd uda_prj3
             npm install
       - run:
+          name: Build Front-End
+          command: |
+            npm run build  # Build frontend
+      - run:
           name: Install Back-End Dependencies
           command: |
             cd ../Project2
             npm install
-      - run:
-          name: Build Front-End
-          command: |
-            cd ../uda_prj3
-            npm run build  # Build frontend
+
       - run:
           name: Build Back-End
           command: |
-            cd ../Project2
             npm run build  # Build backend
 
   deploy:
