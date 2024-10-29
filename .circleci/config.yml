@@ -113,17 +113,19 @@ jobs:
           name: Configure Elastic Beanstalk
           command: |
             eb init -p node.js --region us-east-1 Project2 --platform "Node.js 14 running on 64bit Amazon Linux 2"
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
       - run:
           name: Deploy Application
           command: |
-            cd uda_prj3
-            npm install
-            npm run build
-            cd ../Project2
-            npm install
-            npm run build
-            eb init
-            eb deploy  # Triển khai ứng dụng lên Elastic Beanstalk
+            # cd uda_prj3
+            # npm install
+            # npm run build
+            # cd ../Project2
+            # npm install
+            # npm run build
+            # eb init
+            # eb deploy  # Triển khai ứng dụng lên Elastic Beanstalk
 
 workflows:
   build_and_deploy:
