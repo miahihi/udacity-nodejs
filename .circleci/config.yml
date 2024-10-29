@@ -118,6 +118,7 @@ jobs:
             cd ../Project2
             npm install
             npm run build
+            eb init
             eb deploy  # Triển khai ứng dụng lên Elastic Beanstalk
 
 workflows:
