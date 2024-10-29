@@ -110,6 +110,10 @@ jobs:
       - aws-cli/setup
       - checkout
       - run:
+          name: Configure Elastic Beanstalk
+          command: |
+            eb init -p node.js --region us-east-1 Project2 --platform "Node.js 14 running on 64bit Amazon Linux 2"
+      - run:
           name: Deploy Application
           command: |
             cd uda_prj3
